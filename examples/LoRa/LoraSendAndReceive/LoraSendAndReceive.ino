@@ -48,7 +48,7 @@ void setup() {
 	digitalWrite(LoRaResetPin, HIGH);
 	delay(200);
 
-	SerialModem.begin(19200, SERIAL_8N1, LoRaRxPin, LoRaTxPin);
+	SerialModem.begin(19200, SERIAL_8N2, LoRaRxPin, LoRaTxPin);
 
 	// change this to your regional band (eg. US915, AS923, ...)
 	if (!modem.begin(EU868)) {

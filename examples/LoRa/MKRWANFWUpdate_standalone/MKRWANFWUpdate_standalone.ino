@@ -299,13 +299,14 @@ void loop() {
 
   digitalWrite(LoRaBootPin, LOW);
 
-  SerialLoRa.begin(19200, SERIAL_8N1, LoRaRxPin, LoRaTxPin);
+  SerialLoRa.begin(19200, SERIAL_8N2, LoRaRxPin, LoRaTxPin);
 
   digitalWrite(LoRaResetPin, HIGH);
   delay(200);
   digitalWrite(LoRaResetPin, LOW);
   delay(200);
   digitalWrite(LoRaResetPin, HIGH);
+  delay(200);
 
   LoRaModem* modem = new LoRaModem(SerialLoRa);
 	if (!modem->begin(EU868)) {
