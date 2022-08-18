@@ -25,7 +25,8 @@
 // When the library is fixed to work with ESP32 we will change this reference.
 //#include <Ethernet.h>
 #include "Ethernet/Ethernet.h"
-#include "NeoPixel/NeoPixelBus.h"
+//#include "NeoPixel/NeoPixelBus.h"
+#include <NeoPixelBus.h>
 
 // Relays count
 #define RELAY_COUNT  4
