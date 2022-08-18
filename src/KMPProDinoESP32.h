@@ -25,8 +25,8 @@
 // When the library is fixed to work with ESP32 we will change this reference.
 //#include <Ethernet.h>
 #include "Ethernet/Ethernet.h"
-//#include "NeoPixel/NeoPixelBus.h"
-#include <NeoPixelBus.h>
+
+#include <Adafruit_NeoPixel.h>
 
 // Relays count
 #define RELAY_COUNT  4
@@ -109,13 +109,13 @@ const char TEXT_HTML[] = "text/html; charset=utf-8";
 const char PRODINO_ESP32[] = "ProDino ESP32";
 const char URL_KMPELECTRONICS_EU_PRODINO_ESP32[] = "https://kmpelectronics.eu/products/prodino-esp32-v1/";
 
-extern RgbColor yellow;
-extern RgbColor orange;
-extern RgbColor red;
-extern RgbColor green;
-extern RgbColor blue;
-extern RgbColor white;
-extern RgbColor black;
+extern uint32_t yellow;
+extern uint32_t orange;
+extern uint32_t red;
+extern uint32_t green;
+extern uint32_t blue;
+extern uint32_t white;
+extern uint32_t black;
 
 extern HardwareSerial RS485Serial;
 
@@ -161,7 +161,7 @@ class KMPProDinoESP32Class
 	*
 	* @return RgbColor RGB color.
 	*/
-	RgbColor getStatusLed();
+	uint32_t getStatusLed();
 
 	/**
 	* @brief Set status LED new color.
@@ -170,7 +170,7 @@ class KMPProDinoESP32Class
 	*
 	* @return void
 	*/
-	void setStatusLed(RgbColor color);
+	void setStatusLed(uint32_t color);
 	
 	/**
 	* @brief Set status LED to Off.
@@ -187,7 +187,7 @@ class KMPProDinoESP32Class
 	*
 	* @return void
 	*/
-	void processStatusLed(RgbColor color, int blinkInterval);
+	void processStatusLed(uint32_t color, int blinkInterval);
 
 	/**
 	* @brief Set a relay new state.
