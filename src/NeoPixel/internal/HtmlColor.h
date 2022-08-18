@@ -25,7 +25,7 @@ License along with NeoPixel.  If not, see
 -------------------------------------------------------------------------*/
 #pragma once
 
-#include <Arduino.h>
+
 #include "RgbColor.h"
 
 #define MAX_HTML_COLOR_NAME_LEN 21
@@ -33,10 +33,6 @@ License along with NeoPixel.  If not, see
 #ifndef pgm_read_ptr
 // ESP8266 doesn't define this macro
 #define pgm_read_ptr(addr) (*reinterpret_cast<const void* const *>(addr))
-#endif
-
-#ifndef countof
-#define countof(array) (sizeof(array)/sizeof(array[0]))
 #endif
 
 // ------------------------------------------------------------------------
@@ -90,7 +86,7 @@ struct HtmlColor
     // ------------------------------------------------------------------------
     HtmlColor(const RgbColor& color)
     {
-        Color = (uint32_t)color.R << 16 | (uint32_t)color.G << 8 | (uint32_t)color.B;
+        Color = static_cast<uint32_t>(color.R) << 16 | static_cast<uint32_t>(color.G) << 8 | static_cast<uint32_t>(color.B);
     }
 
     // ------------------------------------------------------------------------
@@ -212,7 +208,7 @@ struct HtmlColor
                 for (uint8_t indexName = 0; indexName < T_HTMLCOLORNAMES::Count(); ++indexName)
                 {
                     const HtmlColorPair* colorPair = T_HTMLCOLORNAMES::Pair(indexName);
-                    PGM_P searchName = (PGM_P)pgm_read_ptr(&colorPair->Name);
+                    PGM_P searchName = reinterpret_cast<PGM_P>(pgm_read_ptr(&(colorPair->Name)));
                     size_t str1Size = nameSize;
                     const char* str1 = name;
                     const char* str2P = searchName;
