@@ -5,7 +5,7 @@ Welcome in our our library page. Here you can find a lot of examples how to use 
 ## How to install our library
 
  -   
-    Downloading and saving the file "**[ProDinoESP32.zip](https://github.com/kmpelectronics/Arduino/blob/master/ProDinoESP32/releases/last/ProDinoESP32.zip?raw=true)**" on your desktop
+    Downloading and saving the file "**[ProDinoESP32.zip](https://github.com/kmpelectronics/ProDinoESP32/releases/download/2.0.0/ProDinoESP32.zip?raw=true)**" on your desktop
  -     
     Opening your Arduino IDE. From the menu selects:  **Sketch**  >  **Include Library**  >  **Add .ZIP Library...**
  -    
