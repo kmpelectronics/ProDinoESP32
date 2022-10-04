@@ -430,6 +430,11 @@ void KMPProDinoESP32Class::setAllRelaysOff()
 	setAllRelaysState(false);
 }
 
+uint8_t KMPProDinoESP32Class::getRelayState(void)
+{
+	return (MCP23S08.GetPinState() & 0xf0) >> 4;
+}
+
 bool KMPProDinoESP32Class::getRelayState(uint8_t relayNumber)
 {
 	// Check if relayNumber is out of range - return false.
@@ -449,6 +454,11 @@ bool KMPProDinoESP32Class::getRelayState(Relay relay)
 /* ----------------------------------------------------------------------- */
 /* Opto input methods. */
 /* ----------------------------------------------------------------------- */
+uint8_t KMPProDinoESP32Class::getOptoInState(void)
+{
+	return (~MCP23S08.GetPinState()) & 0x0f;
+}
+
 bool KMPProDinoESP32Class::getOptoInState(uint8_t optoInNumber)
 {
 	// Check if optoInNumber is out of range - return false.

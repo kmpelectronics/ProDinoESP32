@@ -244,6 +244,8 @@ class KMPProDinoESP32Class
 	*/
 	bool getRelayState(Relay relay);
 
+	uint8_t getRelayState(void);
+
 	/**
 	* @brief Get opto in state.
 	*
@@ -260,6 +262,8 @@ class KMPProDinoESP32Class
 	* @return bool true - opto in is On, false is Off. If number is out of range - return false.
 	*/
 	bool getOptoInState(OptoIn optoIn);
+
+	uint8_t getOptoInState(void);
 
 	/**
 	* @brief Connect to RS485. With default configuration SERIAL_8N1.

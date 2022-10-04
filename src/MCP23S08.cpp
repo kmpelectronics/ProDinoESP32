@@ -33,19 +33,22 @@ int _cs;
 uint8_t  _expTxData[16]  __attribute__((aligned(4)));
 uint8_t  _expRxData[16]  __attribute__((aligned(4)));
 
+SemaphoreHandle_t SPIMutex;
+
 void MCP23S08Class::init(int cs)
 {
 	_cs = cs;
 	// Expander settings.
 	SPI.begin();
 	SPI.setHwCs(true);
-#ifndef ESP32
+
 	SPI.setFrequency(1000000);
 	SPI.setDataMode(SPI_MODE0);
-#endif // ESP32
 
 	pinMode(_cs, OUTPUT);
 	digitalWrite(_cs, HIGH);
+
+	SPIMutex = xSemaphoreCreateMutex();
 }
 
 /**
@@ -97,6 +100,21 @@ bool MCP23S08Class::GetPinState(uint8_t pinNumber)
 }
 
 /**
+ * @brief Get a pins state.
+ *
+ * @param pinNumber The number of pin to be get.
+ *
+ * @return GPIO Reg
+ */
+uint8_t MCP23S08Class::GetPinState(void)
+{
+
+	uint8_t registerData = ReadRegister(GPIO);
+
+	return registerData;
+}
+
+/**
  * @brief Read an expander MCP23S08 a register.
  *
  * @param address A register address.
@@ -132,9 +150,11 @@ void MCP23S08Class::WriteRegister(uint8_t address, uint8_t data)
 
 void MCP23S08Class::TransferBytes()
 {
+	xSemaphoreTake(SPIMutex, portMAX_DELAY);
 	digitalWrite(_cs, LOW);
 	SPI.transferBytes(_expTxData, _expRxData, 3);
 	digitalWrite(_cs, HIGH);
+	xSemaphoreGive(SPIMutex);
 }
 
 /**
