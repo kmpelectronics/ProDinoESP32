@@ -432,7 +432,13 @@ void KMPProDinoESP32Class::setAllRelaysOff()
 
 uint8_t KMPProDinoESP32Class::getRelayState(void)
 {
-	return (MCP23S08.GetPinState() & 0xf0) >> 4;
+	uint8_t tState = (MCP23S08.GetPinState() & 0xf0) >> 4;
+	uint8_t tRet = 0;
+	if (tState & (1 << 0))tRet |= 1 << 3;
+	if (tState & (1 << 1))tRet |= 1 << 2;
+	if (tState & (1 << 2))tRet |= 1 << 1;
+	if (tState & (1 << 3))tRet |= 1 << 0;
+	return tRet;
 }
 
 bool KMPProDinoESP32Class::getRelayState(uint8_t relayNumber)
@@ -456,7 +462,7 @@ bool KMPProDinoESP32Class::getRelayState(Relay relay)
 /* ----------------------------------------------------------------------- */
 uint8_t KMPProDinoESP32Class::getOptoInState(void)
 {
-	return (~MCP23S08.GetPinState()) & 0x0f;
+	return (~MCP23S08.GetPinState() & 0x0F);
 }
 
 bool KMPProDinoESP32Class::getOptoInState(uint8_t optoInNumber)

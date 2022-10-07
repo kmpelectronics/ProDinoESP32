@@ -33,7 +33,7 @@ int _cs;
 uint8_t  _expTxData[16]  __attribute__((aligned(4)));
 uint8_t  _expRxData[16]  __attribute__((aligned(4)));
 
-SemaphoreHandle_t SPIMutex;
+
 
 void MCP23S08Class::init(int cs)
 {
@@ -47,8 +47,6 @@ void MCP23S08Class::init(int cs)
 
 	pinMode(_cs, OUTPUT);
 	digitalWrite(_cs, HIGH);
-
-	SPIMutex = xSemaphoreCreateMutex();
 }
 
 /**
@@ -150,11 +148,9 @@ void MCP23S08Class::WriteRegister(uint8_t address, uint8_t data)
 
 void MCP23S08Class::TransferBytes()
 {
-	xSemaphoreTake(SPIMutex, portMAX_DELAY);
 	digitalWrite(_cs, LOW);
 	SPI.transferBytes(_expTxData, _expRxData, 3);
 	digitalWrite(_cs, HIGH);
-	xSemaphoreGive(SPIMutex);
 }
 
 /**
