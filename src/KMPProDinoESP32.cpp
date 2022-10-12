@@ -462,7 +462,13 @@ bool KMPProDinoESP32Class::getRelayState(Relay relay)
 /* ----------------------------------------------------------------------- */
 uint8_t KMPProDinoESP32Class::getOptoInState(void)
 {
-	return (~MCP23S08.GetPinState() & 0x0F);
+	uint8_t tState = ~MCP23S08.GetPinState();
+	uint8_t tRet = 0;
+	if (tState & (1 << 0))tRet |= 1 << 3;
+	if (tState & (1 << 1))tRet |= 1 << 2;
+	if (tState & (1 << 2))tRet |= 1 << 1;
+	if (tState & (1 << 3))tRet |= 1 << 0;
+	return tRet;
 }
 
 bool KMPProDinoESP32Class::getOptoInState(uint8_t optoInNumber)

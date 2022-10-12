@@ -57,3 +57,13 @@ examples/LoRa/LoraSendAndReceive/__vm/Compile.vmps.xml
 examples/LoRa/LoraSendAndReceive/__vm/.LoraSendAndReceive.vsarduino.h
 examples/LoRa/LoraSendAndReceive/.vs/LoraSendAndReceive/v16/ipch/AutoPCH/72db02a5cf2e56b1/.LORASENDANDRECEIVE.VSARDUINO.ipch
 examples/LoRa/LoraSendAndReceive/.vs/LoraSendAndReceive/v16/Browse.VC.db
+examples/Inputs1/Inputs1.vcxproj.filters
+examples/Inputs1/Inputs1.vcxproj
+examples/Inputs1/Inputs1.sln
+examples/Inputs1/Inputs1.ino.esp32.bin
+examples/Inputs1/__vm/Upload.vmps.xml
+examples/Inputs1/__vm/Configuration.Release.vmps.xml
+examples/Inputs1/__vm/Compile.vmps.xml
+examples/Inputs1/__vm/.Inputs1.vsarduino.h
+examples/Inputs1/.vs/Inputs1/v16/ipch/AutoPCH/efaf8abf6e3658e3/.INPUTS1.VSARDUINO.ipch
+examples/Inputs1/.vs/Inputs1/v16/Browse.VC.db
