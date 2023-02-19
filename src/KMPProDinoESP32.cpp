@@ -511,7 +511,7 @@ void KMPProDinoESP32Class::rs485End()
 *
 * @return void
 */
-void RS485BeginWrite()
+void KMPProDinoESP32Class::RS485BeginWrite()
 {
 	digitalWrite(RS485Pin, RS485Transmit);
 	// Allowing pin should delay for 50 nS
@@ -523,7 +523,7 @@ void RS485BeginWrite()
 *
 * @return void
 */
-void RS485EndWrite()
+void KMPProDinoESP32Class::RS485EndWrite()
 {
 	RS485Serial.flush();
 	delayMicroseconds(_TxFlushDelayuS);

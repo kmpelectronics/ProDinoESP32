@@ -354,6 +354,18 @@ class KMPProDinoESP32Class
 	*   if result > -1 - valid byte to read.
 	*/
 	int rs485Read(unsigned long delayWait, uint8_t repeatTime);
+	/**
+	* @brief End write data to RS485.
+	*
+	* @return void
+	*/
+	void RS485EndWrite();
+	/**
+	* @brief Begin write data to RS485.
+	*
+	* @return void
+	*/
+	void RS485BeginWrite();
 
 	private:
 		void beginEthernet(bool startEthernet);
